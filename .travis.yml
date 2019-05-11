@@ -31,11 +31,11 @@ script:
   - ls -la ../..
   - cd ../..
   - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
-  # - cat _config.yml
   - sed -i "s|title:\OPSFORCE|title:\ Hexo|g" _config.yml
   - sed -i "s|author:\ John\ Doe|author:\ Jimmy\ Zhao|g" _config.yml
   - sed -i "s|language:|language:\ zh-tw|g" _config.yml
   - sed -i "s|timezone:|timezone:\ Asia/Shanghai|g" _config.yml
+  - cat _config.yml
   - hexo clean # 清除
   - hexo generate # 生成静态网页
 
