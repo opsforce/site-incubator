@@ -23,17 +23,22 @@ script:
   - hexo init site
   - cd site
   - ls -la
-  - yarn add hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
+  # - yarn add hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
+  - npm i --save hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
   - git clone https://github.com/SumiMakito/hexo-theme-Journal.git themes/journal
   - ls -la themes/journal
   - cd themes/journal
-  - yarn install
+  # - yarn install
+  - npm i
+  - sed -i 's|Journal.|OpsForce.|g' _config.yml
+  - sed -i 's|short_name|opsforce|g' _config.yml
+  - cat _config.yml
   - ls -la ../..
   - cd ../..
   - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
-  - sed -i "s|title:\ Hexo|title:\ OPSFORCE|g" _config.yml
+  - sed -i "s|title:\ Hexo|title:\ OpsForce|g" _config.yml
   - sed -i "s|author:\ John\ Doe|author:\ Jimmy\ Zhao|g" _config.yml
-  - sed -i "s|language:|language:\ zh-cn|g" _config.yml
+  - sed -i "s|language:|language:\ zh-tw|g" _config.yml
   - sed -i "s|timezone:|timezone:\ Asia/Shanghai|g" _config.yml
   - cat _config.yml
   - hexo clean # 清除
