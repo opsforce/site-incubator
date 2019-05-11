@@ -2,14 +2,15 @@ language: node_js # 设置语言
 node_js: stable # 设置相应的版本
 
 # Travis-CI Caching
-cache:
-  directories:
-    - node_modules
-  yarn: true
+# cache:
+#   directories:
+#     - node_modules
+#   yarn: true
 
 # START: Build Lifecycle
 install:
-  - npm install # 安装hexo及插件
+  # - npm install # 安装hexo及插件
+  - true
 
 before_script:
   # - npm install -g gulp
@@ -22,14 +23,14 @@ script:
   - hexo init site
   - cd site
   - ls -la
-  - yarn add hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
-  - git clone https://github.com/SumiMakito/hexo-theme-Journal.git themes/journal
-  - ls -la themes/journal
-  - cd themes/journal
-  - yarn install
-  - ls -la ../..
-  - cd ../..
-  - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
+  # - yarn add hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
+  # - git clone https://github.com/SumiMakito/hexo-theme-Journal.git themes/journal
+  # - ls -la themes/journal
+  # - cd themes/journal
+  # - yarn install
+  # - ls -la ../..
+  # - cd ../..
+  # - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
   - hexo clean # 清除
   - hexo generate # 生成静态网页
 
