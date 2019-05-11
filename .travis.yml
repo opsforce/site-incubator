@@ -22,6 +22,7 @@ script:
   - ls -la themes/journal
   - cd themes/journal
   - npm i
+  - ls -la ../..
   - cd ../..
   - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
   - hexo clean # 清除
