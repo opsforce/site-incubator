@@ -5,23 +5,28 @@ node_js: stable # 设置相应的版本
 cache:
   directories:
     - node_modules
+  yarn: true
 
 # START: Build Lifecycle
 install:
   - npm install # 安装hexo及插件
 
-# before_script:
-#   - npm install -g gulp
+before_script:
+  # - npm install -g gulp
+  - npm install -g hexo-cli
 
 # script:
 #   - gulp dist
 
 script:
-  - npm i --save hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
+  - hexo init site
+  - cd site
+  - ls -la
+  - yarn add hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
   - git clone https://github.com/SumiMakito/hexo-theme-Journal.git themes/journal
   - ls -la themes/journal
   - cd themes/journal
-  - npm i
+  - yarn install
   - ls -la ../..
   - cd ../..
   - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
