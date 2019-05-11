@@ -31,11 +31,13 @@ script:
   - ls -la ../..
   - cd ../..
   - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
+  - cat _config.yml
   - hexo clean # 清除
   - hexo generate # 生成静态网页
 
 after_script:
   - cd public
+  - echo 'demo.opsforce.org' > CNAME
   - git init
   - git config user.name "opsforce" # 修改name
   - git config user.email "i@opsforce.org" # 修改email
