@@ -1,0 +1,46 @@
+language: node_js # 设置语言
+node_js: stable # 设置相应的版本
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+# START: Build Lifecycle
+install:
+  - npm install # 安装hexo及插件
+
+# before_script:
+#   - npm install -g gulp
+
+# script:
+#   - gulp dist
+
+script:
+  - npm i --save hexo-renderer-ejs hexo-generator-archive hexo-generator-category-enhance hexo-generator-feed hexo-generator-index hexo-generator-tag
+  - git clone https://github.com/SumiMakito/hexo-theme-Journal.git themes/journal
+  - ls -la themes/journal
+  - cd themes/journal
+  - npm i
+  - cd ../..
+  - sed -i 's|theme:\ landscape|theme:\ journal|g' _config.yml
+  - hexo clean # 清除
+  - hexo generate # 生成静态网页
+
+after_script:
+  - cd public
+  - git init
+  - git config user.name "opsforce" # 修改name
+  - git config user.email "i@opsforce.org" # 修改email
+  - git add .
+  - git commit -m "update site" # 此处看情况修改
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages # GH_TOKEN是在Travis中配置token的名称
+# END: Build LifeCycle
+
+branches:
+  only:
+    - master # 只监测master分支，对应的源码分支
+
+env:
+  global:
+    - GH_REF: github.com/opsforce/site-incubator.git # 设置GH_REF，注意更改
